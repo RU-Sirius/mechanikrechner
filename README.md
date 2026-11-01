@@ -22,7 +22,7 @@ Menü „Ablage“ → „Zum Dock hinzufügen…“.
 
 Die Anleitung steht auch in der App unter **„App installieren“**.
 
-## Funktionen (v1.0.0)
+## Funktionen (v1.0.1)
 
 **Grundlagen**
 - Einheiten umrechnen (Länge, Kraft, Druck/Spannung, Drehmoment, Leistung, Energie, Masse, Volumen, Geschwindigkeit, Temperatur)
@@ -78,7 +78,7 @@ Vorbelegte Werkstoff- und Schnittwerte sind als Beispiele bzw. Richtwerte gekenn
 - `mcalc.js`: Rechenlogik · Tests: `node test.mjs`
 - `mtools.js`, `mtools2.js`: Rechner · `ui.js`: gemeinsame Bausteine
 - `projects.js`: Favoriten, Projekte, Berichte (eigener Speicher-Namensraum `mr:`) · `pdf.js`: PDF-Erzeugung ohne externe Bibliothek
-- `app.js`, `index.html`, `style.css`: Startseite, Routing, Darstellung · `install.js`: Installationsanleitung
+- `app.js`, `index.html`, `style.css`: Startseite, Routing, Darstellung · `install.js`: Installationsanleitung · `icons.js`: Strich-Icons (SVG)
 - `sw.js`: Offline-Cache. **Nach Änderungen `CACHE`-Version erhöhen.**
 
 ## Haftung & Lizenz

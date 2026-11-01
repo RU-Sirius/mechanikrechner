@@ -3,6 +3,7 @@ import * as M from "./mtools.js";
 import * as M2 from "./mtools2.js";
 import { favorites, saveBar, projectsView, reportView, saves } from "./projects.js";
 import { installView } from "./install.js";
+import { svgIcon } from "./icons.js";
 
 const view = document.getElementById("view");
 const header = document.querySelector("header");
@@ -39,7 +40,7 @@ const TOOLS = {
   mass: ["Masse von Halbzeugen", "Masse", W, "kg", M2.massView],
   tables: ["Tabellen & Richtwerte", "Tabellen", N, "☰", M2.tables],
 };
-const nav = (key) => navRow(key, TOOLS[key][0], TOOLS[key][2], TOOLS[key][3]);
+const nav = (key) => navRow(key, TOOLS[key][0], TOOLS[key][2], svgIcon(key));
 const GROUPS = [
   ["Grundlagen", ["units", "power", "lever", "motion", "energy"]],
   ["Antriebstechnik", ["gear", "spur", "belt", "hoist"]],
@@ -56,9 +57,9 @@ function home() {
   const nSaved = saves.list().length;
   return [
     ...(favs.length ? section("★ Favoriten", favs.map(nav)) : []),
-    ...section("", [navRow("projects", `Projekte & gespeicherte Berechnungen${nSaved ? ` (${nSaved})` : ""}`, N, "📁")]),
+    ...section("", [navRow("projects", `Projekte & gespeicherte Berechnungen${nSaved ? ` (${nSaved})` : ""}`, N, svgIcon("projects"))]),
     ...GROUPS.flatMap(([title, keys]) => section(title, keys.map(nav))),
-    ...section("", [navRow("install", "App installieren (iPhone, iPad, Mac)", N, "⤓"), navRow("settings", "Einstellungen", N, "⚙")]),
+    ...section("", [navRow("install", "App installieren (iPhone, iPad, Mac)", N, svgIcon("install")), navRow("settings", "Einstellungen", N, svgIcon("settings"))]),
     h("div", { class: "credit" }, "Built by R. U. Sirius?"),
   ];
 }
@@ -66,7 +67,7 @@ function home() {
 function settingsView() {
   return [
     ...section("Haftungshinweis", [h("div", { class: "row" }, h("span", { class: "hint" }, LEGAL))]),
-    ...section("", [resultRow("Version", "1.0.0 (Web)"), resultRow("Entwickelt von", "R. U. Sirius?"), resultRow("Lizenz", "MIT")]),
+    ...section("", [resultRow("Version", "1.0.1 (Web)"), resultRow("Entwickelt von", "R. U. Sirius?"), resultRow("Lizenz", "MIT")]),
   ];
 }
 
