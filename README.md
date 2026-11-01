@@ -83,4 +83,4 @@ Vorbelegte Werkstoff- und Schnittwerte sind als Beispiele bzw. Richtwerte gekenn
 
 ## Haftung & Lizenz
 Kostenloses Hilfsmittel ohne Gewähr; Ergebnisse dienen nur der Orientierung und ersetzen keine Konstruktion, Auslegung oder
-Festigkeitsnachweise nach den geltenden Normen durch eine Fachkraft. Lizenz: MIT (siehe `LICENSE`). Built by R. U. Sirius?
+Festigkeitsnachweise nach den geltenden Normen durch eine Fachkraft. Lizenz: MIT (siehe `LICENSE`). Built by Lukas Kopp
