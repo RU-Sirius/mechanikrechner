@@ -42,3 +42,14 @@ r = c.pneumatic({ D: 50, dr: 20, s: 200, p: 6, cycles: 10 }); near(r.perCycle, 5
 near(c.hoist({ m: 1000, v: 0.5, eta: 0.85, g: 9.81 }).p / 1000, 5.7705882352941185, 1e-9);
 near(c.lever({ f1: 200, a: 500, b: 100 }).f2, 1000);
 console.log("Alle Tests bestanden.");
+{
+  const m2 = await import("./mcalc2.js");
+  let r = m2.bearingLife({ c: 20000, fr: 2000, kind: "ball", n: 1000 }); near(r.l10, 1000); near(r.l10h, 1e9 / 60000);
+  r = m2.bearingLife({ c: 20000, fr: 2000, fa: 1000, x: 0.56, y: 1.5, kind: "roller" }); near(r.P, 2620); near(r.l10, (20000 / 2620) ** (10 / 3));
+  near(m2.bearingRequiredC({ P: 2000, kind: "ball", n: 1000, hours: 1e9 / 60000 }), 20000, 1e-6);
+  r = m2.bendLength({ a: 50, b: 30, s: 2, r: 2, k: 0.5, angle: 90 }); near(r.ba, Math.PI / 2 * 3); near(r.ossb, 4); near(r.L, 80 - 8 + 1.5 * Math.PI);
+  r = m2.compressionSpring({ d: 2, D: 20, n: 10, G: 81500, F: 50 }); near(r.R, 81500 * 16 / (8 * 8000 * 10)); near(r.s, 50 / r.R); near(r.tau, 8 * 50 * 20 / (Math.PI * 8)); near(r.k, 10.5 / 9.25);
+  near(m2.compressionSpring({ d: 2, D: 20, n: 10, G: 81500, s: 10 }).F, 10 * 81500 * 16 / 640000);
+  r = m2.productionCost({ tr: 60, th: 4, tn: 1, m: 20, rateMachine: 90, rateLabor: 0, material: 2 }); near(r.T, 160); near(r.te, 8); near(r.perPiece, 8 / 60 * 90 + 2); near(r.total, 20 * r.perPiece);
+  console.log("Lager/Biegen/Feder/Kosten ok.");
+}

@@ -22,7 +22,7 @@ Menü „Ablage“ → „Zum Dock hinzufügen…“.
 
 Die Anleitung steht auch in der App unter **„App installieren“**.
 
-## Funktionen (v1.0.1)
+## Funktionen (v1.1.0)
 
 **Grundlagen**
 - Einheiten umrechnen (Länge, Kraft, Druck/Spannung, Drehmoment, Leistung, Energie, Masse, Volumen, Geschwindigkeit, Temperatur)
@@ -36,6 +36,7 @@ Die Anleitung steht auch in der App unter **„App installieren“**.
 - Stirnrad-Geometrie aus Modul (Teil-, Kopf-, Fußkreis, Achsabstand)
 - Riementrieb (Übersetzung, Riemengeschwindigkeit, Riemenlänge)
 - Hubantrieb (erforderliche Motorleistung)
+- Wälzlager-Lebensdauer nach der Grundgleichung (ISO 281): äquivalente Last, L₁₀, L₁₀h, erforderliche Tragzahl
 
 **Festigkeitslehre**
 - Spannung & Flächenpressung
@@ -47,9 +48,12 @@ Die Anleitung steht auch in der App unter **„App installieren“**.
 **Verbindungselemente**
 - Metrisches ISO-Regelgewinde, Spannungsquerschnitt, Kernloch, Festigkeitsklassen, Anziehdrehmoment
 - Passungen aus Abmaßen (Spiel/Übermaß, Passungsart)
+- Druckfedern: Federrate, Federweg bzw. -kraft, Schubspannung mit Korrekturfaktor
 
 **Fertigung**
 - Drehen, Fräsen, Bohren: Drehzahl, Vorschubgeschwindigkeit, Hauptzeit, Zeitspanvolumen, Schnittleistung
+- Blechbiegung: gestreckte Länge (Zuschnitt) und Ausgleichswert über den k-Faktor, beliebiger Biegewinkel
+- Fertigungszeit & Stückkosten: Auftragszeit, Rüstanteil, Kosten je Stück und Los
 
 **Hydraulik & Pneumatik**
 - Hydraulikzylinder (Kräfte, Geschwindigkeiten, Leistung)
@@ -64,6 +68,10 @@ Die Anleitung steht auch in der App unter **„App installieren“**.
 - Regelgewinde, Festigkeitsklassen, Werkstoff-Richtwerte, Eulerfälle, Umrechnungen
 
 **Arbeiten mit der App**
+- **Suche** auf der Startseite (auch nach Synonymen, z. B. „Wallbox“, „FI“, „pq-Formel“); Enter öffnet den ersten Treffer
+- **Zuletzt verwendet**: die letzten Rechner oben auf der Startseite
+- **Datensicherung** (Einstellungen): Projekte, Favoriten und Einstellungen als Datei exportieren und wieder einspielen (iPhone: Teilen-Menü → „In Dateien sichern“)
+- **Weitere Apps** (Einstellungen): Links zu den anderen Rechnern der Reihe
 - Favoriten (☆ oben rechts in jedem Rechner)
 - Projekte: Berechnungen speichern, wieder öffnen, löschen
 - PDF jeder Berechnung und Projektberichte – auf iPhone/iPad über das Teilen-Menü, am Computer als Download
@@ -76,7 +84,7 @@ Vorbelegte Werkstoff- und Schnittwerte sind als Beispiele bzw. Richtwerte gekenn
 
 ## Entwicklung
 - `mcalc.js`: Rechenlogik · Tests: `node test.mjs`
-- `mtools.js`, `mtools2.js`: Rechner · `ui.js`: gemeinsame Bausteine
+- `mtools.js`, `mtools2.js`, `mtools3.js`: Rechner · `mcalc2.js`: Logik Lager/Biegen/Feder/Kosten · `extras.js`: Suche, Zuletzt verwendet, Datensicherung · `ui.js`: gemeinsame Bausteine
 - `projects.js`: Favoriten, Projekte, Berichte (eigener Speicher-Namensraum `mr:`) · `pdf.js`: PDF-Erzeugung ohne externe Bibliothek
 - `app.js`, `index.html`, `style.css`: Startseite, Routing, Darstellung · `install.js`: Installationsanleitung · `icons.js`: Strich-Icons (SVG)
 - `sw.js`: Offline-Cache. **Nach Änderungen `CACHE`-Version erhöhen.**

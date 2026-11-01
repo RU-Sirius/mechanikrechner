@@ -69,3 +69,9 @@ button.action { width: 100%; border: 0; background: none; font: inherit; color: 
 .speed-num { font-size: 56px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
 .speed-unit { color: var(--sub); font-size: 15px; margin-top: 4px; }
 .btn:disabled { opacity: .5; }
+/* ---------- Suche ---------- */
+.search-wrap { margin: 12px 0 0; }
+.search-input { width: 100%; box-sizing: border-box; font: inherit; font-size: 16px; padding: 9px 12px; border: 0; border-radius: 10px; background: color-mix(in srgb, var(--sub) 18%, transparent); color: var(--text); outline: none; }
+.search-input:focus { box-shadow: 0 0 0 2px var(--accent); }
+[hidden] { display: none !important; }
+.group + .group { margin-top: 20px; }

@@ -1,9 +1,12 @@
 import { LEGAL, h, section, resultRow, navRow, clearCurrentState, setPreset } from "./ui.js";
 import * as M from "./mtools.js";
 import * as M2 from "./mtools2.js";
+import * as M3 from "./mtools3.js";
 import { favorites, saveBar, projectsView, reportView, saves } from "./projects.js";
 import { installView } from "./install.js";
 import { svgIcon } from "./icons.js";
+import { createExtras } from "./extras.js";
+const X = createExtras("mechanik");
 
 const view = document.getElementById("view");
 const header = document.querySelector("header");
@@ -24,6 +27,7 @@ const TOOLS = {
   spur: ["Stirnrad-Geometrie (Modul)", "Stirnrad", A, "⚙", M.spurGear],
   belt: ["Riementrieb", "Riementrieb", A, "◯", M.beltDrive],
   hoist: ["Hubantrieb (Leistung)", "Hubantrieb", A, "↑", M.hoist],
+  bearing: ["Wälzlager-Lebensdauer (L₁₀)", "Wälzlager", A, "◎", M3.bearingView],
   stress: ["Spannung & Flächenpressung", "Spannung", F, "σ", M.stressView],
   section: ["Querschnittswerte (A, I, W)", "Querschnitt", F, "I", M.sectionView],
   beam: ["Balkenbiegung (Durchbiegung)", "Biegebalken", F, "⌒", M.beamView],
@@ -31,7 +35,10 @@ const TOOLS = {
   torsion: ["Torsion & Wellendurchmesser", "Torsion", F, "↻", M.torsionView],
   bolt: ["Gewinde & Schrauben (inkl. MA)", "Schrauben", V, "M", M2.bolt],
   fit: ["Passungen (aus Abmaßen)", "Passung", V, "⌀", M2.fitView],
+  spring: ["Druckfedern (Federrate, Spannung)", "Druckfeder", V, "≀", M3.springView],
   machining: ["Drehen · Fräsen · Bohren", "Zerspanung", P, "✂", M2.machining],
+  bend: ["Blechbiegung (gestreckte Länge)", "Blechbiegung", P, "⌐", M3.bendView],
+  cost: ["Fertigungszeit & Stückkosten", "Stückkosten", P, "€", M3.costView],
   cylinder: ["Hydraulikzylinder", "Hydraulikzylinder", H, "▭", M2.cylinderView],
   pipe: ["Rohrströmung (Hydraulik)", "Rohrströmung", H, "≋", M2.pipeView],
   pneumatic: ["Pneumatik-Luftverbrauch", "Pneumatik", H, "◌", M2.pneumaticView],
@@ -43,10 +50,10 @@ const TOOLS = {
 const nav = (key) => navRow(key, TOOLS[key][0], TOOLS[key][2], svgIcon(key));
 const GROUPS = [
   ["Grundlagen", ["units", "power", "lever", "motion", "energy"]],
-  ["Antriebstechnik", ["gear", "spur", "belt", "hoist"]],
+  ["Antriebstechnik", ["gear", "spur", "belt", "hoist", "bearing"]],
   ["Festigkeitslehre", ["stress", "section", "beam", "euler", "torsion"]],
-  ["Verbindungselemente", ["bolt", "fit"]],
-  ["Fertigung", ["machining"]],
+  ["Verbindungselemente", ["bolt", "fit", "spring"]],
+  ["Fertigung", ["machining", "bend", "cost"]],
   ["Hydraulik & Pneumatik", ["cylinder", "pipe", "pneumatic"]],
   ["Wärme & Werkstoff", ["thermal", "heat", "mass"]],
   ["Nachschlagen", ["tables"]],
@@ -55,19 +62,27 @@ const GROUPS = [
 function home() {
   const favs = favorites.list().filter((k) => k in TOOLS);
   const nSaved = saves.list().length;
-  return [
+  const rec = X.recent.list().filter((k) => k in TOOLS && !favs.includes(k)).slice(0, 4);
+  return X.withSearch([
     ...(favs.length ? section("★ Favoriten", favs.map(nav)) : []),
+    ...(rec.length ? section("Zuletzt verwendet", rec.map(nav)) : []),
     ...section("", [navRow("projects", `Projekte & gespeicherte Berechnungen${nSaved ? ` (${nSaved})` : ""}`, N, svgIcon("projects"))]),
     ...GROUPS.flatMap(([title, keys]) => section(title, keys.map(nav))),
     ...section("", [navRow("install", "App installieren (iPhone, iPad, Mac)", N, svgIcon("install")), navRow("settings", "Einstellungen", N, svgIcon("settings"))]),
     h("div", { class: "credit" }, "Built by R. U. Sirius?"),
-  ];
+  ], { tools: TOOLS, groups: GROUPS, nav, extra: SEARCH_EXTRA });
 }
+// Zusätzliche Suchbegriffe (Synonyme)
+const SEARCH_EXTRA = { power: "moment kw nm", machining: "schnittgeschwindigkeit vorschub drehzahl", bolt: "schraube gewinde anzugsmoment", fit: "toleranz spiel uebermass",
+  section: "flaechentraegheitsmoment widerstandsmoment", beam: "biegung traeger", cylinder: "hydraulik kolben", pipe: "durchfluss leitung", mass: "gewicht stahl alu", units: "umrechnen",
+  bearing: "kugellager rollenlager l10 tragzahl", spring: "feder federrate", bend: "abkanten biegen k faktor zuschnitt ausgleichswert", cost: "kalkulation ruestzeit hauptzeit stundensatz preis" };
 
 function settingsView() {
   return [
+    ...X.backupSection(),
     ...section("Haftungshinweis", [h("div", { class: "row" }, h("span", { class: "hint" }, LEGAL))]),
-    ...section("", [resultRow("Version", "1.0.3 (Web)"), resultRow("Entwickelt von", "R. U. Sirius?"), resultRow("Lizenz", "MIT")]),
+    ...X.appsSection(),
+    ...section("", [resultRow("Version", "1.1.0 (Web)"), resultRow("Entwickelt von", "R. U. Sirius?"), resultRow("Lizenz", "MIT")]),
   ];
 }
 
@@ -77,7 +92,7 @@ function route() {
   const [key, arg] = location.hash.slice(1).split("/");
   clearCurrentState();
   let title, nodes, isTool = false;
-  if (key in TOOLS) { title = TOOLS[key][1]; nodes = TOOLS[key][4](); isTool = true; }
+  if (key in TOOLS) { title = TOOLS[key][1]; nodes = TOOLS[key][4](); isTool = true; X.recent.track(key); }
   else if (key in PAGES) { title = PAGES[key][0]; nodes = PAGES[key][1](); }
   else if (key === "report" && arg) { title = "Projektbericht"; nodes = reportView(decodeURIComponent(arg)); }
   else { title = "MechanikRechner"; nodes = home(); }

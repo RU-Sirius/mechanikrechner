@@ -37,6 +37,10 @@ export const ICONS = {
   tables: ["M4 4h16v16H4z", "M4 9.3h16", "M4 14.6h16", "M10 4v16"],
   projects: ["M3 6.5h6.5l2 2.3H21V19H3z"],
   install: ["M12 4v11", "M7 10l5 5 5-5", "M5 20h14"],
+  bearing: [["circle", 12, 12, 9], ["circle", 12, 12, 4], ["circle", 12, 5.5, 1.3], ["circle", 12, 18.5, 1.3], ["circle", 5.5, 12, 1.3], ["circle", 18.5, 12, 1.3]],
+  spring: ["M8 3h8", "M8 21h8", "M8 5.5 16 8 8 10.5 16 13 8 15.5 16 18"],
+  bend: ["M4 20h9a4 4 0 0 0 4-4V4", "M4 16h9V4"],
+  cost: ["M15.5 7.5a5 5 0 1 0 0 9", "M6 10.5h7", "M6 13.5h7"],
   settings: ["M4 7h9", "M17 7h3", "M4 17h3", "M11 17h9", ["circle", 15, 7, 2], ["circle", 9, 17, 2]],
 };
 
