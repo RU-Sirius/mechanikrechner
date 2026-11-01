@@ -1,4 +1,4 @@
-import { LEGAL, h, section, resultRow, navRow, clearCurrentState, setPreset } from "./ui.js";
+import { LEGAL, h, section, resultRow, navRow, clearCurrentState, setPreset, segmented, keyboardMode, setKeyboardMode } from "./ui.js";
 import * as M from "./mtools.js";
 import * as M2 from "./mtools2.js";
 import * as M3 from "./mtools3.js";
@@ -79,10 +79,12 @@ const SEARCH_EXTRA = { power: "moment kw nm", machining: "schnittgeschwindigkeit
 
 function settingsView() {
   return [
+    ...section("Eingabe", [segmented([["num", "Ziffernblock"], ["full", "Volle Tastatur"]], keyboardMode(), (v) => { setKeyboardMode(v); route(); })],
+      "Tastatur für Zahlenfelder auf iPhone und iPad. Der Ziffernblock hat kein Minuszeichen und keine Buchstaben – für negative Werte, Präfixe (z. B. 4,7k) oder Ausdrücke (2pi, 1/3) die volle Tastatur wählen. Formel- und Textfelder nutzen immer die volle Tastatur."),
     ...X.backupSection(),
     ...section("Haftungshinweis", [h("div", { class: "row" }, h("span", { class: "hint" }, LEGAL))]),
     ...X.appsSection(),
-    ...section("", [resultRow("Version", "1.1.1 (Web)"), resultRow("Entwickelt von", "R. U. Sirius?"), resultRow("Lizenz", "MIT")]),
+    ...section("", [resultRow("Version", "1.1.2 (Web)"), resultRow("Entwickelt von", "R. U. Sirius?"), resultRow("Lizenz", "MIT")]),
   ];
 }
 

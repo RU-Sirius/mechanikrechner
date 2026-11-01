@@ -1,5 +1,5 @@
 // Offline-Cache. Bei Änderungen an den Dateien die Versionsnummer erhöhen.
-const CACHE = "mechanikrechner-v6";
+const CACHE = "mechanikrechner-v7";
 const FILES = ["index.html", "style.css", "app.js", "extras.js", "mcalc.js", "ui.js", "mtools.js", "mtools2.js", "mtools3.js", "mcalc2.js", "projects.js", "pdf.js", "install.js", "icons.js", "manifest.webmanifest",
                "icons/icon-180.png", "icons/icon-192.png", "icons/icon-512.png"];
 

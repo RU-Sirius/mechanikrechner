@@ -22,7 +22,7 @@ Menü „Ablage“ → „Zum Dock hinzufügen…“.
 
 Die Anleitung steht auch in der App unter **„App installieren“**.
 
-## Funktionen (v1.1.1)
+## Funktionen (v1.1.2)
 
 **Grundlagen**
 - Einheiten umrechnen (Länge, Kraft, Druck/Spannung, Drehmoment, Leistung, Energie, Masse, Volumen, Geschwindigkeit, Temperatur)
@@ -68,6 +68,7 @@ Die Anleitung steht auch in der App unter **„App installieren“**.
 - Regelgewinde, Festigkeitsklassen, Werkstoff-Richtwerte, Eulerfälle, Umrechnungen
 
 **Arbeiten mit der App**
+- **Eingabe:** Einstellung „Ziffernblock | Volle Tastatur“ für Zahlenfelder (der iPhone-Ziffernblock hat kein Minus); Überlauf bei extremen Werten wird als Bereichshinweis statt „NaN“ angezeigt
 - **Suche** auf der Startseite (auch nach Synonymen, z. B. „Wallbox“, „FI“, „pq-Formel“); Enter öffnet den ersten Treffer
 - **Zuletzt verwendet**: die letzten Rechner oben auf der Startseite
 - **Datensicherung** (Einstellungen): Projekte, Favoriten und Einstellungen als Datei exportieren und wieder einspielen (iPhone: Teilen-Menü → „In Dateien sichern“)
