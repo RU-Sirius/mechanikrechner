@@ -60,14 +60,14 @@ function home() {
     ...section("", [navRow("projects", `Projekte & gespeicherte Berechnungen${nSaved ? ` (${nSaved})` : ""}`, N, svgIcon("projects"))]),
     ...GROUPS.flatMap(([title, keys]) => section(title, keys.map(nav))),
     ...section("", [navRow("install", "App installieren (iPhone, iPad, Mac)", N, svgIcon("install")), navRow("settings", "Einstellungen", N, svgIcon("settings"))]),
-    h("div", { class: "credit" }, "Built by Lukas Kopp"),
+    h("div", { class: "credit" }, "Built by R. U. Sirius?"),
   ];
 }
 
 function settingsView() {
   return [
     ...section("Haftungshinweis", [h("div", { class: "row" }, h("span", { class: "hint" }, LEGAL))]),
-    ...section("", [resultRow("Version", "1.0.2 (Web)"), resultRow("Entwickelt von", "Lukas Kopp"), resultRow("Lizenz", "MIT")]),
+    ...section("", [resultRow("Version", "1.0.3 (Web)"), resultRow("Entwickelt von", "R. U. Sirius?"), resultRow("Lizenz", "MIT")]),
   ];
 }
 
@@ -94,7 +94,7 @@ function route() {
   view.replaceChildren(...nodes);
   setPreset(null); // nicht verbrauchte Voreinstellung verwerfen
   if (isTool && key !== "tables") {
-    view.append(saveBar(key, title, view), h("div", { class: "print-only" }, `MechanikRechner – Built by Lukas Kopp · ${LEGAL}`));
+    view.append(saveBar(key, title, view), h("div", { class: "print-only" }, `MechanikRechner – Built by R. U. Sirius? · ${LEGAL}`));
   }
   window.scrollTo(0, 0);
 }
