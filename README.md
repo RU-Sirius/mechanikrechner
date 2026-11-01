@@ -22,7 +22,7 @@ Menü „Ablage“ → „Zum Dock hinzufügen…“.
 
 Die Anleitung steht auch in der App unter **„App installieren“**.
 
-## Funktionen (v1.1.0)
+## Funktionen (v1.1.1)
 
 **Grundlagen**
 - Einheiten umrechnen (Länge, Kraft, Druck/Spannung, Drehmoment, Leistung, Energie, Masse, Volumen, Geschwindigkeit, Temperatur)
@@ -74,7 +74,7 @@ Die Anleitung steht auch in der App unter **„App installieren“**.
 - **Weitere Apps** (Einstellungen): Links zu den anderen Rechnern der Reihe
 - Favoriten (☆ oben rechts in jedem Rechner)
 - Projekte: Berechnungen speichern, wieder öffnen, löschen
-- PDF jeder Berechnung und Projektberichte – auf iPhone/iPad über das Teilen-Menü, am Computer als Download
+- PDF jeder Berechnung und Projektberichte (Werte exakt rechtsbündig) – auf iPhone/iPad über das Teilen-Menü, am Computer als Download
 - Eingabe mit Präfix (2,5k = 2500), Offline-Betrieb, automatische Updates
 
 ## Bewusst nicht enthalten
